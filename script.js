@@ -44,6 +44,19 @@ copyPix.addEventListener('click', async () => {
 });
 
 rsvpButton.addEventListener('click', () => {
-  rsvpButton.textContent = 'Presença confirmada ✓';
+  rsvpButton.textContent = 'Presença confirmada';
   rsvpButton.disabled = true;
 });
+
+const sections = document.querySelectorAll('main section:not(.hero)');
+sections.forEach((section) => section.classList.add('reveal-section'));
+
+const sectionObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('is-visible');
+    observer.unobserve(entry.target);
+  });
+}, { threshold: 0.12 });
+
+sections.forEach((section) => sectionObserver.observe(section));

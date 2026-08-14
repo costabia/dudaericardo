@@ -609,6 +609,25 @@ footer p {
     letter-spacing: 0;
 }
 
+.reveal-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .75s ease, transform .75s ease;
+}
+
+.reveal-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-section {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
 @media (max-width:700px) {
     .site-header {
         padding: 16px;
@@ -715,6 +734,18 @@ footer p {
 
     .content-section {
         font-size: clamp(1.6em, 2.5vw, 5rem);
+    }
+
+    .content-section h2,
+    .rsvp-panel h2,
+    .modal-card h2 {
+        font-family: "Aston Script", "Italiana", cursive;
+    }
+
+    .content-section p,
+    .rsvp-panel > p,
+    .modal-card > p {
+        font-family: "Cinzel", serif;
     }
 
     .schedule {
