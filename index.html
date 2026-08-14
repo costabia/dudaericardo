@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Casamento de Maria Eduarda e Ricardo — 03 de abril de 2027." />
+    <title>Maria Eduarda & Ricardo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Italiana&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar" aria-label="Navegação principal">
+        <a class="brand" href="#inicio" aria-label="Maria Eduarda e Ricardo — início">
+          <img src="assets/monogram.svg" alt="Monograma de Maria Eduarda e Ricardo" />
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span>
+        </button>
+        <div class="nav-links">
+          <a href="#programacao">Programação</a>
+          <a href="#traje">Traje</a>
+          <a href="#presentes">Presentes</a>
+          <a href="#rsvp">RSVP</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio" aria-labelledby="hero-title">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1 id="hero-title">Maria Eduarda <em>e</em> Ricardo</h1>
+          <p>03 de abril de 2027</p>
+        </div>
+      </section>
+
+      <section class="ceremony" aria-labelledby="ceremony-title">
+        <div class="ceremony-photo-frame">
+          <div class="ceremony-photo-inner">
+            <img src="assets/ceremony-photo.png" alt="Maria Eduarda e Ricardo à beira-mar" />
+          </div>
+        </div>
+        <div class="ceremony-details">
+          <h2 id="ceremony-title">Igreja Matriz de Gaspar</h2>
+          <p>03 de abril de 2027</p>
+        </div>
+      </section>
+
+      <section class="our-day" aria-labelledby="our-day-title">
+        <div class="our-day-card">
+          <h2 id="our-day-title">Nosso dia</h2>
+          <div class="our-day-message">
+            <p>Estamos preparando o nosso casamento com muito carinho e sonhando com um dia inesquecível ao lado das pessoas que amamos.</p>
+            <p>Aqui vocês encontrarão informações importantes para celebrarmos juntos esse momento tão especial.</p>
+            <p>Será uma grande alegria ter vocês conosco!</p>
+            <p>Com carinho</p>
+          </div>
+          <p class="signature">Maria Eduarda e Ricardo</p>
+        </div>
+      </section>
+
+      <section class="content-section program" id="programacao">
+        <p class="eyebrow">Celebre conosco</p>
+        <h2>Programação</h2>
+        <div class="schedule">
+          <article><img class="schedule-icon" src="assets/igreja.webp" alt="" /><span>17h00</span><h3>Cerimônia</h3><p>Nos encontraremos <strong>às 17h</strong><br class="mobile-break" /> na <strong>Igreja Matriz de Gaspar</strong><br class="mobile-break" /> em Blumenau<br class="mobile-break" /> Santa Catarina.</p><a class="directions-link" href="https://www.google.com/maps/search/?api=1&query=Igreja+Matriz+de+Gaspar" target="_blank" rel="noopener">Como chegar <span aria-hidden="true">↗</span></a></article>
+          <article><img class="schedule-icon" src="assets/brinde.webp" alt="" /><span>Após a cerimônia</span><h3>Recepção</h3><p>Após a cerimônia nos encontraremos no <strong>Green Space Eventos</strong> para celebrar esse dia especial.</p><a class="directions-link" href="https://www.google.com/maps/search/?api=1&query=Green+Space+Eventos" target="_blank" rel="noopener">Como chegar <span aria-hidden="true">↗</span></a></article>
+        </div>
+      </section>
+
+      <section class="content-section soft attire" id="traje">
+        <div class="attire-copy">
+          <p class="eyebrow">Dress code</p><h2>Traje</h2>
+          <p class="attire-type">Passeio completo</p>
+          <div class="attire-guidelines">
+            <p><strong>Para eles</strong><span>Terno com ou sem gravata</span></p>
+            <p><strong>Para elas</strong><span>Vestidos longos ou midi</span></p>
+          </div>
+        </div>
+        <img class="attire-illustration" src="assets/traje.png" alt="Ilustração de traje passeio completo" />
+      </section>
+
+      <section class="content-section gifts" id="presentes">
+        <p class="eyebrow">LISTA DE PRESENTES</p><h2>Presentes</h2>
+        <p class="intro">Sua presença é o nosso maior presente. <br>Se desejar nos presentear, clique no botão abaixo.</p>
+        <button class="gift-button" type="button" data-modal-open>Presentes</button>
+      </section>
+
+      <section class="content-section rsvp" id="rsvp">
+        <div class="rsvp-panel">
+          <p class="eyebrow">Confirme sua presença</p><h2>RSVP</h2>
+          <p>Será uma alegria celebrar este momento com você.</p>
+          <button class="rsvp-button" type="button">Confirmar presença <span aria-hidden="true">→</span></button>
+        </div>
+      </section>
+    </main>
+    <footer><p>Esperamos por você</p>Maria Eduarda & Ricardo <span>•</span> 2027</footer>
+    <div class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="pix-title">
+      <div class="modal-card">
+        <button class="modal-close" type="button" aria-label="Fechar">×</button>
+        <h2 id="pix-title">Presentes</h2>
+        <p>Caso queira nos presentear, disponibilizamos nossa chave Pix.</p>
+        <code class="pix-key">PIX_A_DEFINIR</code>
+        <button class="copy-pix" type="button" data-pix-key="PIX_A_DEFINIR">Copiar chave Pix</button>
+        <p class="copy-feedback" aria-live="polite"></p>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
