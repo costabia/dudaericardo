@@ -8,7 +8,7 @@
 
 :root {
     --ink: #f8f4eb;
-    --leaf: #233124;
+    --leaf: #333110;
     --paper: #f4f0e7;
     --gold: #ded1b8;
 }
@@ -24,8 +24,73 @@ html {
 body {
     margin: 0;
     background: var(--paper);
-    color: #293126;
+    color: #333110;
     font-family: "Cinzel", serif;
+}
+
+body.site-locked {
+    overflow: hidden;
+}
+
+.intro-screen {
+    position: fixed;
+    z-index: 200;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: #1A2012;
+    color: var(--ink);
+    opacity: 1;
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+.intro-screen.is-leaving {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.intro-content {
+    display: grid;
+    justify-items: center;
+    gap: 42px;
+    text-align: center;
+}
+
+.intro-monogram {
+    width: clamp(145px, 25vw, 250px);
+    clip-path: inset(100% 0 0 0);
+    animation: monogram-form 2.8s cubic-bezier(.65, 0, .35, 1) forwards;
+}
+
+.enter-button {
+    padding: 14px 24px;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ink);
+    font: 10px "Cinzel", serif;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    opacity: 0;
+    animation: enter-appear .8s ease 2s forwards;
+    transition: background .25s, color .25s;
+}
+
+.enter-button:hover {
+    background: transparent;
+    color: var(--ink);
+}
+
+@keyframes monogram-form {
+    from { clip-path: inset(100% 0 0 0); transform: translateY(18px); }
+    to { clip-path: inset(0); transform: translateY(0); }
+}
+
+@keyframes enter-appear {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .site-header {
@@ -96,7 +161,16 @@ body {
     display: grid;
     place-items: center;
     overflow: hidden;
-    background: url("assets/hero.jpg") center center/cover no-repeat;
+    background: url("assets/hero.webp") center center/cover no-repeat;
+}
+
+.hero-video {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .hero-overlay {
@@ -120,7 +194,6 @@ h1 {
     font-family: "Aston Script", "Italiana", cursive;
     font-size: clamp(2.5rem, 3vw, 6rem);
     font-weight: 400;
-    letter-spacing: -.04em;
     line-height: .92;
 }
 
@@ -137,25 +210,120 @@ h1 em {
     text-transform: uppercase;
 }
 
+.countdown { display:flex; justify-content:center; gap:clamp(18px,3vw,42px); margin-top:38px; }
+.countdown div { display:grid; justify-items:center; gap:6px; min-width:56px; text-align:center; }
+.countdown strong { font:500 clamp(1.3rem,2.5vw,2rem) "Cinzel",serif; letter-spacing:.08em; }
+.countdown span { font:9px "Cinzel",serif; letter-spacing:.16em; text-transform:uppercase; }
+
+.our-day .countdown {
+    color: #333110;
+}
+
 .ceremony {
-    display: grid;
-    grid-template-columns: minmax(280px, 390px) 1fr;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 975 / 693;
+    min-height: 0;
+    padding: 0;
+    background: var(--paper);
+    overflow: hidden;
+}
+
+.ceremony > .countdown {
+    position: absolute;
+    z-index: 5;
+    bottom: 10px;
+    left: 50%;
+    width: 100%;
+    margin-top: 0;
     align-items: center;
     justify-content: center;
-    gap: clamp(48px, 10vw, 180px);
-    padding: clamp(75px, 10vw, 140px) clamp(24px, 10vw, 170px);
-    background: var(--paper);
+    color: #333110;
+    transform: translateX(-50%);
+    text-shadow: none;
+}
+
+.ceremony-mobile-view {
+    display: none;
+}
+
+.ceremony-mobile-copy {
+    display: none;
+}
+
+.ceremony-desktop-view {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    background: url("assets/ceremony-desktop.webp") center / cover no-repeat;
+}
+
+.ceremony-frame-image {
+    display: block;
+    width: min(31%, 360px);
+    aspect-ratio: 614 / 896;
+    object-fit: cover;
+    object-position: center;
+}
+
+.ceremony-oval img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.08);
+}
+
+.ceremony-desktop-copy {
+    position: absolute;
+    top: 50%;
+    left: 67%;
+    width: min(38%, 520px);
+    transform: translate(-50%, -50%);
+    color: #333110;
+    text-align: center;
+}
+
+.ceremony-desktop-copy h2 {
+    margin: 0 0 14px;
+    font-family: "Aston Script", "Italiana", cursive;
+    font-size: clamp(2.6rem, 1.2vw, 5rem);
+    font-weight: 400;
+    white-space: nowrap;
+    line-height: .9;
+}
+
+.ceremony-desktop-copy p {
+    margin: 0;
+    font: 14px "Cinzel", serif;
+    letter-spacing: .15em;
+}
+
+.ceremony-picture,
+.ceremony-picture img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.ceremony-picture img {
+    object-fit: cover;
+    object-position: center;
 }
 
 .ceremony-photo-frame {
     width: min(100%, 390px);
     padding: 12px;
-    border: 2px solid #41553d;
+    border: 2px solid #333110;
 }
 
 .ceremony-photo-inner {
     padding: 10px;
-    border: 1px solid #41553d;
+    border: 1px solid #333110;
 }
 
 .ceremony-photo-inner img {
@@ -168,7 +336,7 @@ h1 em {
 }
 
 .ceremony-details {
-    color: #344532;
+    color: #333110;
     text-align: center;
 }
 
@@ -188,34 +356,60 @@ h1 em {
     line-height: .9;
 }
 
+.save-date-section {
+    position: relative;
+    z-index: 3;
+    min-height: 100px;
+    display: grid;
+    place-items: center;
+    padding: 60px 0 105px;
+    background: #DAD3C6;
+    color: #333110;
+}
+
+.save-date-section .countdown {
+    margin-top: 0;
+}
+
+.envelope {
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    bottom: -92px;
+    width: min(185px, 42vw);
+    transform: translateX(-50%);
+    filter: drop-shadow(0 8px 12px rgba(24, 28, 18, .2));
+}
+
 .our-day {
     min-height: 760px;
     display: grid;
     place-items: center;
     padding: 72px 24px;
-    background: linear-gradient(rgba(11, 18, 11, .33), rgba(11, 18, 11, .33)), url("assets/hero.jpg") center/cover no-repeat;
+    background: linear-gradient(rgba(11, 18, 11, .26), rgba(11, 18, 11, .26)), url("assets/our-day-desktop.webp") center/cover no-repeat;
 }
 
 .our-day-card {
-    width: min(1000px, 100%);
+    width: min(750px, 100%);
     min-height: 570px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 55px clamp(250px, 7vw, 78px);
-    background: #1B1C0A;
-    opacity: 80%;
+    padding: 55px clamp(28px, 18vw, 78px);
+    background: transparent;
     color: #f7f3ea;
     text-align: center;
 }
 
 .our-day-card h2 {
-    margin: 0 0 34px;
+    margin: 0 0 45px;
     font-family: "Aston Script", "Italiana", cursive;
-    font-size: clamp(1rem, 2.2vw, 4.5rem);
+    max-width: 100%;
+    font-size: clamp(2rem, 1vw, 2rem);
     font-weight: 400;
     line-height: .9;
+    text-wrap: balance;
 }
 
 .our-day-message {
@@ -229,7 +423,7 @@ h1 em {
 }
 
 .signature {
-    margin: 3px 0 0;
+    margin: 40px 0 0;
     font-family: "Aston Script", "Italiana", cursive;
     font-size: 1rem;
 }
@@ -260,9 +454,10 @@ h1 em {
 
 .attire-type {
     margin: -20px 0 35px;
-    font-family: "Aston Script", serif;
-    font-size: 1.2rem;
-    color: #41553d;
+    font-family: "Cinzel", serif;
+    font-size: 11px;
+    color: #333110;
+    line-height: 1.6;
 }
 
 .attire-guidelines {
@@ -294,8 +489,66 @@ h1 em {
 }
 
 .gifts {
-    background: #1B1C0A;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(28px, 7vw, 110px);
+    min-height: 440px;
+    text-align: center;
+    background: #1A2012;
     color: var(--ink);
+}
+
+.gifts-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    text-align: left;
+}
+
+.gifts h2 {
+    margin-bottom: 10px !important;
+}
+
+.gifts .intro {
+    width: min(100%, 300px);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.champagne-tower {
+    display: block;
+    width: min(185px, 20vw);
+    height: auto;
+    margin: 0;
+}
+
+.quote-section {
+    position: relative;
+    min-height: min(78svh, 900px);
+    display: grid;
+    place-content: center;
+    padding: 60px 28px;
+    color: #fff;
+    text-align: center;
+    background: linear-gradient(rgba(12, 18, 12, .28), rgba(12, 18, 12, .28)), url("assets/quote-photo.webp") center 15% / cover no-repeat;
+}
+
+.quote-section blockquote {
+    max-width: 850px;
+    margin: 0 auto 18px;
+    font: clamp(1.2rem, 1.5vw, 2.5rem) / 1.15 "Aston Script", "Italiana", cursive;
+    text-wrap: balance;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, .35);
+}
+
+.quote-section cite {
+    font: 12px "Cinzel", serif;
+    letter-spacing: .16em;
+    font-style: normal;
+    text-transform: uppercase;
 }
 
 .rsvp {
@@ -311,6 +564,13 @@ h1 em {
 
 .content-section h2 {
     margin: 0 0 45px;
+    font-family: "Aston Script", serif;
+    font-size: clamp(1em, 2vw, 5rem);
+    font-weight: 400;
+}
+
+.programacao{
+    margin: 0 0 45px;
     font-family: "Cinzel", serif;
     font-size: clamp(1em, 2vw, 5rem);
     font-weight: 400;
@@ -318,7 +578,7 @@ h1 em {
 
 .schedule {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     max-width: 1050px;
     margin: auto;
     border-top: 1px solid #b4b1a6;
@@ -326,16 +586,77 @@ h1 em {
 }
 
 .schedule article {
-    padding: 100px;
-    border-right: 1px solid #b4b1a6;
+    padding: 100px 350px;
+    border-bottom: 1px solid #b4b1a6;
 }
 
 .schedule article:last-child {
     border: 0;
 }
 
+.program-description {
+    max-width: 760px;
+    margin: 0 auto 20px;
+}
+
+.program-description p {
+    margin: 0 0 18px;
+}
+
+.story-image-section {
+    position: relative;
+    min-height: min(82svh, 900px);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: url("assets/story-photo.webp") center / cover no-repeat;
+}
+
+.story-image-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(11, 17, 11, .18);
+}
+
+.story-initials {
+    position: relative;
+    z-index: 1;
+    width: min(42vw, 420px);
+    opacity: 0;
+    transform: translateY(22px) scale(.92);
+    filter: drop-shadow(0 5px 18px rgba(0, 0, 0, .3));
+}
+
+.story-image-section.is-visible .story-initials {
+    animation: initials-appear 1.5s cubic-bezier(.22, .8, .25, 1) .15s forwards;
+}
+
+.content-section h2.programacao {
+    font-family: "Cinzel", serif;
+}
+
+/* Keep all sections visible immediately; only the entrance screen animates. */
+.reveal-section,
+.reveal-section > *,
+.reveal-section .gifts-content > *,
+.reveal-section .schedule article > *,
+.story-image-section .story-initials {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+}
+
+@keyframes initials-appear {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
 .schedule span {
-    font-size: 12px;
+    font-size: 10px;
     letter-spacing: .12em;
 }
 
@@ -347,20 +668,27 @@ h1 em {
     object-fit: contain;
 }
 
+.event-address {
+    display: block;
+    margin-top: 14px;
+    font: 11px/1.65 "Cinzel", serif;
+    letter-spacing: .04em;
+}
+
 .schedule h3 {
-    margin: 18px 0 10px;
+    margin: 18px 0 20px;
     font-family: "Aston Script", serif;
     font-size: 28px;
     font-weight: 400;
-    color: #505a45;
+    color: #333110;
 }
 
 .schedule p,
 .faq-list p {
     font-family: Cinzel, serif;
-    font-size: 14px;
+    font-size: 10px;
     line-height: 1.7;
-    color: #505a45;
+    color: #333110;
     letter-spacing: 0;
     margin-top: 30px;
 }
@@ -369,15 +697,23 @@ h1 em {
     display: none;
 }
 
+.schedule .program-description p {
+    margin: 0 0 18px;
+}
+
+.location-mobile {
+    display: none;
+}
+
 .intro {
     max-width: 570px;
     margin: auto;
     font-family: Cinzel, serif;
-    font-size: 14px;
+    font-size: 11px;
     line-height: 1.7;
     color: white;
     letter-spacing: 0;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 .faq-list {
@@ -425,7 +761,7 @@ h1 em {
     border: 0;
     border-bottom: 1px solid #77766d;
     background: transparent;
-    color: #31342e;
+    color: #333110;
     font: 15px Cinzel, serif;
     outline: 0;
 }
@@ -434,8 +770,8 @@ h1 em {
     justify-self: center;
     margin-top: 18px;
     padding: 15px 27px;
-    border: 1px solid #4a5548;
-    background: #334334;
+    border: 1px solid #333110;
+    background: #333110;
     color: #fff;
     cursor: pointer;
     font: 10px "Cinzel", serif;
@@ -473,18 +809,18 @@ h1 em {
 .directions-link:hover,
 .gift-button:hover,
 .copy-pix:hover {
-    background: #414d3d;
+    background: #333110;
     color: #fff;
 }
 
 .gift-button {
-    margin-top: 32px;
+    margin: 14px 0 0;
     color: #f6f1e6;
 }
 
 .gifts .gift-button:hover {
     background: #f6f1e6;
-    color: #31402f;
+    color: #333110;
 }
 
 .rsvp {
@@ -492,22 +828,23 @@ h1 em {
     place-items: center;
     padding: 88px 24px;
     background-color: #ecebe1;
-    background-image: url("assets/listras-rsvp.png");
-    background-repeat: repeat;
-    background-size: 590px auto;
+    background-image: url("assets/rsvp-texture-desktop.webp");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .rsvp-panel {
     width: min(570px, 100%);
     padding: 62px clamp(28px, 7vw, 80px);
-    border: 2px solid #40533d;
-    background: rgba(248, 246, 237, .92);
-    color: #354333;
+    color: #333110;
     text-align: center;
 }
 
 .rsvp-panel h2 {
     margin-bottom: 20px;
+    font-family: "Cinzel", serif !important;
+    font-size: clamp(1.4rem, 1vw, 1.4rem) !important;
 }
 
 .rsvp-panel>p:not(.eyebrow) {
@@ -515,17 +852,42 @@ h1 em {
     font: 15px/1.7 Cinzel, serif;
 }
 
+.closing-photo {
+    position: relative;
+    min-height: min(78svh, 900px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0;
+    overflow: hidden;
+    background: url("assets/footer-photo.webp") center / cover no-repeat;
+}
+
+.closing-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(9, 16, 12, .12);
+}
+
+.closing-monogram {
+    position: relative;
+    z-index: 1;
+    width: min(240px, 40vw);
+    filter: brightness(0) invert(1) drop-shadow(0 3px 10px rgba(0, 0, 0, .24));
+}
+
 .rsvp-button {
     margin-top: 30px;
-    border-color: #1B1C0A;
-    background: #1B1C0A;
+    border-color: #333110;
+    background: #333110;
     color: #fff;
     padding: 15px 23px;
 }
 
 .rsvp-button:hover {
     background: transparent;
-    color: #1B1C0A;
+    color: #333110;
 }
 
 .modal {
@@ -550,9 +912,9 @@ h1 em {
     position: relative;
     width: min(480px, 100%);
     padding: 56px 42px 44px;
-    border: 2px solid #40533d;
+    border: 2px solid #333110;
     background: #f5f1e8;
-    color: #354333;
+    color: #333110;
     text-align: center;
 }
 
@@ -573,7 +935,7 @@ h1 em {
     right: 16px;
     border: 0;
     background: transparent;
-    color: #354333;
+    color: #333110;
     font-size: 28px;
     cursor: pointer;
 }
@@ -599,8 +961,8 @@ h1 em {
 
 footer {
     padding: 60px;
-    background: #f4f0e7;
-    color: #31342e;
+    background: #1A2012;
+    color: #f8f4eb;
     text-align: center;
     font: 11px "Cinzel", serif;
     letter-spacing: .1em;
@@ -617,13 +979,50 @@ footer p {
     letter-spacing: 0;
 }
 
-.reveal-section {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity .75s ease, transform .75s ease;
+.instagram-credit {
+    display: block;
+    margin-top: 14px;
+    color: rgba(248, 244, 235, .7);
+    font: 10px "Montserrat", sans-serif;
+    letter-spacing: .08em;
+    text-decoration: none;
+    transition: color .2s ease;
 }
 
-.reveal-section.is-visible {
+.instagram-credit:hover {
+    color: #f8f4eb;
+}
+
+.reveal-section {
+    opacity: 1;
+    transform: none;
+}
+
+.reveal-section > .eyebrow,
+.reveal-section > h2,
+.reveal-section > p,
+.reveal-section > blockquote,
+.reveal-section > cite,
+.reveal-section > button,
+.reveal-section .gifts-content > *,
+.reveal-section .schedule article > *:not(img),
+.reveal-section .attire-copy > *,
+.reveal-section .rsvp-panel > * {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal-section.is-visible > .eyebrow,
+.reveal-section.is-visible > h2,
+.reveal-section.is-visible > p,
+.reveal-section.is-visible > blockquote,
+.reveal-section.is-visible > cite,
+.reveal-section.is-visible > button,
+.reveal-section.is-visible .gifts-content > *,
+.reveal-section.is-visible .schedule article > *:not(img),
+.reveal-section.is-visible .attire-copy > *,
+.reveal-section.is-visible .rsvp-panel > * {
     opacity: 1;
     transform: translateY(0);
 }
@@ -634,9 +1033,34 @@ footer p {
         transform: none;
         transition: none;
     }
+
+    .reveal-section > .eyebrow,
+    .reveal-section > h2,
+    .reveal-section > p,
+    .reveal-section > blockquote,
+    .reveal-section > cite,
+    .reveal-section > button,
+    .reveal-section .gifts-content > *,
+    .reveal-section .schedule article > *:not(img),
+    .reveal-section .attire-copy > *,
+    .reveal-section .rsvp-panel > * {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 
 @media (max-width:700px) {
+
+    .save-date-section {
+        background-color: #D6CCC2;
+    }
+    
+    .our-day-message {
+        font-size: 11px;
+
+    }
+
     .site-header {
         padding: 16px;
     }
@@ -692,10 +1116,73 @@ footer p {
         font-size: 1.5rem;
     }
 
+    .countdown { gap:10px; margin-top:28px; }
+    .countdown div { min-width:58px; }
+    .countdown strong { font-size:1.1rem; }
+    .countdown span { font-size:7px; letter-spacing:.1em; }
+
     .ceremony {
-        grid-template-columns: 1fr;
-        gap: 58px;
-        padding: 80px 36px;
+        height: 100svh;
+        min-height: 650px;
+        padding: 0;
+        overflow: visible;
+    }
+
+    .ceremony-desktop-view {
+        display: none;
+    }
+
+    .ceremony-mobile-view,
+    .ceremony-mobile-view img {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .ceremony-mobile-view img {
+        object-fit: cover;
+    }
+
+    .ceremony-mobile-view {
+        position: relative;
+    }
+
+    .ceremony-mobile-copy {
+        position: absolute;
+        z-index: 2;
+        top: 49%;
+        left: 50%;
+        display: block;
+        width: min(90%, 340px);
+        transform: translate(-50%, -50%);
+        color: #f8f4eb;
+        text-align: center;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, .42);
+    }
+
+    .ceremony-mobile-copy h2 {
+        margin: 0 0 10px;
+        font: 400 16px / 1 "Aston Script", "Italiana", cursive;
+    }
+
+    .ceremony-mobile-copy p {
+        margin: 0;
+        font: 10px "Cinzel", serif;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+    }
+
+    .ceremony > .countdown {
+        bottom: -58px;
+    }
+
+    .story-image-section {
+        min-height: 100svh;
+        background-position: center;
+    }
+
+    .story-initials {
+        width: min(43vw, 211px);
     }
 
     .ceremony-photo-frame {
@@ -713,10 +1200,28 @@ footer p {
     .attire {
         gap: 30px;
         text-align: center;
+        min-height: 100svh;
+        align-content: center;
+        padding-top: 48px;
+        padding-bottom: 48px;
     }
 
     .attire-copy {
+        width: min(100%, 300px);
         margin: auto;
+    }
+
+    .attire-guidelines {
+        gap: 28px;
+    }
+
+    .attire-guidelines p {
+        line-height: 2.15;
+    }
+
+    .attire-guidelines span {
+        display: block;
+        line-height: 1.9;
     }
 
     .attire-illustration {
@@ -724,28 +1229,55 @@ footer p {
         margin: auto;
     }
 
+    .champagne-tower {
+        width: 150px;
+    }
+
     .our-day {
-        min-height: 650px;
+        min-height: 100vh;
         padding: 48px 20px;
         background-position: 58% center;
     }
 
     .our-day-card {
         min-height: 530px;
-        padding: 45px 30px;
+        padding: 45px 40px;
+    }
+
+    .green-space {
+        padding: 0px 40px;
+    }
+
+    .our-day-card h2 {
+        max-width: 300px;
+        font-size: clamp(1rem, 1rem, 1rem);
     }
 
     .content-section {
-        min-height: 0;
+        min-height: 100vh;
         padding: 80px 24px;
+    }
+
+    .gifts {
+        min-height: 78svh;
+        gap: 18px;
+        padding-top: 28px;
+        padding-bottom: 28px;
+
+        .gift-titulo { 
+            margin: 0;
+        }
     }
 
     .content-section {
         font-size: clamp(1.6em, 2.5vw, 5rem);
     }
 
+    .rsvp {
+        background-image: url("assets/rsvp-texture-mobile.webp");
+    }
+
     .content-section h2,
-    .rsvp-panel h2,
     .modal-card h2 {
         font-family: "Aston Script", "Italiana", cursive;
     }
@@ -775,5 +1307,37 @@ footer p {
 
     .mobile-break {
         display: block;
+    }
+
+    .location-desktop {
+        display: none;
+    }
+
+    .location-mobile {
+        display: block;
+    }
+
+    .gifts {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 58px;
+        padding: 28px 20px;
+    }
+
+    .gifts-content {
+        align-items: center;
+        text-align: center;
+    }
+
+    .quote-section {
+        background-position: center 15%;
+    }
+
+    .our-day {
+        background-image: linear-gradient(rgba(11, 18, 11, .26), rgba(11, 18, 11, .26)), url("assets/our-day-mobile.webp");
+        background-position: center;
     }
 }

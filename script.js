@@ -1,6 +1,17 @@
 const navbar = document.querySelector('.navbar');
 const toggle = document.querySelector('.menu-toggle');
 
+const introScreen = document.querySelector('#intro-screen');
+const enterButton = document.querySelector('#enter-button');
+const heroVideo = document.querySelector('#hero-video');
+
+enterButton.addEventListener('click', () => {
+  document.body.classList.remove('site-locked');
+  introScreen.classList.add('is-leaving');
+  heroVideo.play().catch(() => {});
+  window.setTimeout(() => introScreen.remove(), 1100);
+});
+
 toggle.addEventListener('click', () => {
   const open = navbar.classList.toggle('menu-open');
   toggle.setAttribute('aria-expanded', String(open));
@@ -17,6 +28,7 @@ const closeModal = document.querySelector('.modal-close');
 const copyPix = document.querySelector('.copy-pix');
 const copyFeedback = document.querySelector('.copy-feedback');
 const rsvpButton = document.querySelector('.rsvp-button');
+const countdown = document.querySelector('#countdown');
 
 const setModal = (open) => {
   modal.classList.toggle('is-open', open);
@@ -48,15 +60,18 @@ rsvpButton.addEventListener('click', () => {
   rsvpButton.disabled = true;
 });
 
-const sections = document.querySelectorAll('main section:not(.hero)');
-sections.forEach((section) => section.classList.add('reveal-section'));
-
-const sectionObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    entry.target.classList.add('is-visible');
-    observer.unobserve(entry.target);
+const weddingDate = new Date('2027-04-03T17:00:00-03:00').getTime();
+const updateCountdown = () => {
+  const remaining = Math.max(0, weddingDate - Date.now());
+  const values = {
+    days: Math.floor(remaining / 86400000),
+    hours: Math.floor((remaining / 3600000) % 24),
+    minutes: Math.floor((remaining / 60000) % 60),
+    seconds: Math.floor((remaining / 1000) % 60),
+  };
+  Object.entries(values).forEach(([unit, value]) => {
+    countdown.querySelector(`[data-unit="${unit}"]`).textContent = String(value).padStart(2, '0');
   });
-}, { threshold: 0.12 });
-
-sections.forEach((section) => sectionObserver.observe(section));
+};
+updateCountdown();
+window.setInterval(updateCountdown, 1000);
