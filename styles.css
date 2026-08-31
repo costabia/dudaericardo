@@ -1050,6 +1050,23 @@ footer p {
     }
 }
 
+/* Tablet and iPad layout: keep mobile and desktop breakpoints unchanged. */
+@media (min-width: 701px) and (max-width: 1199px) {
+    .ceremony-desktop-copy h2 {
+        font-size: clamp(2rem, 0.5vw, 2rem);
+    }
+
+    .schedule article {
+        padding: 100px 30px;
+    }
+}
+
+@media (min-width: 711px) and (max-width: 854px) {
+    .ceremony-desktop-copy h2 {
+        font-size: clamp(1.5rem, 0.5vw, 1.5rem);
+    }
+}
+
 @media (max-width:700px) {
 
     .save-date-section {
