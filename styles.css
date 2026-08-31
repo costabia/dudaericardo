@@ -1148,6 +1148,10 @@ footer p {
         display: flex;
     }
 
+    .adultsonly {
+        font-size: 10px;
+    }
+
     .schedule article {
         padding: 70px;
     }
@@ -1330,6 +1334,13 @@ footer p {
     .rsvp-panel > p,
     .modal-card > p {
         font-family: "Cinzel", serif;
+    }
+
+    .content-section {
+            .adultsonly {
+        font-size: 12px;
+        font-weight: 800;
+    }
     }
 
     .schedule {
