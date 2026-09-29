@@ -1181,6 +1181,8 @@ footer p {
     }
 
     .hero {
+        min-height: 100svh;
+        height: 100svh;
         background-position: 58% center;
     }
 
@@ -1331,7 +1333,7 @@ footer p {
     }
 
     .gifts {
-        min-height: 78svh;
+        min-height: 100svh;
         gap: 18px;
         padding-top: 28px;
         padding-bottom: 28px;
