@@ -1205,7 +1205,8 @@ footer p {
     }
 
     .ceremony-mobile-view img {
-        object-fit: cover;
+        object-fit: contain;
+        background: var(--paper);
     }
 
     .ceremony-mobile-view {
