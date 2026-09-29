@@ -1099,6 +1099,13 @@ footer p {
 
 /* Tablet and iPad layout: keep mobile and desktop breakpoints unchanged. */
 @media (min-width: 701px) and (max-width: 1199px) {
+    .ceremony-desktop-view {
+        background-color: #DAD3C6;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
     .ceremony-desktop-copy h2 {
         font-size: clamp(2rem, 0.5vw, 2rem);
     }
