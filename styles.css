@@ -414,7 +414,7 @@ h1 em {
     place-items: center;
     padding: 72px 24px;
     background-color: #1a2012;
-    background-image: linear-gradient(rgba(11, 18, 11, .26), rgba(11, 18, 11, .26)), url("assets/our-day-desktop.webp");
+    background-image: linear-gradient(rgba(11, 18, 11, .26), rgba(11, 18, 11, .26)), url("assets/our-day-desktop.webp?v=2");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1416,7 +1416,8 @@ footer p {
     }
 
     .our-day {
-        background-image: linear-gradient(rgba(11, 18, 11, .26), rgba(11, 18, 11, .26)), url("assets/our-day-mobile.webp");
+        background-image: linear-gradient(rgba(11, 18, 11, .26), rgba(11, 18, 11, .26)), url("assets/our-day-mobile.webp?v=2");
+        background-color: #1a2012;
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
