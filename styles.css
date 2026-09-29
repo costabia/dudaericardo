@@ -413,7 +413,11 @@ h1 em {
     display: grid;
     place-items: center;
     padding: 72px 24px;
-    background: linear-gradient(rgba(11, 18, 11, .26), rgba(11, 18, 11, .26)), url("assets/our-day-desktop.webp") center/cover no-repeat;
+    background-color: #1a2012;
+    background-image: linear-gradient(rgba(11, 18, 11, .26), rgba(11, 18, 11, .26)), url("assets/our-day-desktop.webp");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .our-day-card {
@@ -887,7 +891,7 @@ h1 em {
     align-items: center;
     padding-top: 0;
     overflow: hidden;
-    background: url("assets/footer-photo.webp") center / cover no-repeat;
+    background: url("assets/footer-photo.webp") center 70% / cover no-repeat;
 }
 
 .closing-photo::after {
@@ -1077,6 +1081,22 @@ footer p {
     }
 }
 
+@media (min-width: 701px) {
+    .ceremony {
+        height: 100svh;
+        min-height: 0;
+        aspect-ratio: auto;
+    }
+
+    .our-day,
+    .content-section,
+    .quote-section,
+    .story-image-section,
+    .closing-photo {
+        min-height: 100svh;
+    }
+}
+
 /* Tablet and iPad layout: keep mobile and desktop breakpoints unchanged. */
 @media (min-width: 701px) and (max-width: 1199px) {
     .ceremony-desktop-copy h2 {
@@ -1226,7 +1246,7 @@ footer p {
 
     .story-image-section {
         min-height: 100svh;
-        background-position: center;
+        background-position: 30% center;
     }
 
     .story-initials {
@@ -1336,7 +1356,7 @@ footer p {
         font-family: "Cinzel", serif;
     }
 
-    .content-section {
+    .content-section
             .adultsonly {
         font-size: 12px;
         font-weight: 800;
@@ -1388,11 +1408,12 @@ footer p {
     }
 
     .quote-section {
-        background-position: center 15%;
+        background-position: 60% 15%;
     }
 
     .our-day {
         background-image: linear-gradient(rgba(11, 18, 11, .26), rgba(11, 18, 11, .26)), url("assets/our-day-mobile.webp");
         background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
     }
-}
