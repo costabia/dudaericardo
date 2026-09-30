@@ -6,9 +6,10 @@ const enterButton = document.querySelector('#enter-button');
 const heroVideo = document.querySelector('#hero-video');
 
 enterButton.addEventListener('click', () => {
+  heroVideo.currentTime = 0;
+  heroVideo.play().catch(() => {});
   document.body.classList.remove('site-locked');
   introScreen.classList.add('is-leaving');
-  heroVideo.play().catch(() => {});
   window.setTimeout(() => introScreen.remove(), 1100);
 });
 
