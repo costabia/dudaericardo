@@ -171,6 +171,9 @@ body.site-locked {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center center;
+    transform: scale(3.15);
+    transform-origin: center center;
 }
 
 .hero-overlay {
@@ -819,7 +822,8 @@ h1 em {
 .directions-link,
 .gift-button,
 .rsvp-button,
-.copy-pix {
+.copy-pix,
+.wishlist-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -839,7 +843,8 @@ h1 em {
 
 .directions-link:hover,
 .gift-button:hover,
-.copy-pix:hover {
+.copy-pix:hover,
+.wishlist-link:hover {
     background: #333110;
     color: #fff;
 }
@@ -1123,7 +1128,10 @@ footer p {
 
 @media (max-width:700px) {
 
-    
+    .hero-video {
+        transform: scale(1);
+    }
+
     .our-day-message {
         font-size: 11px;
 

@@ -27,7 +27,6 @@ const openModal = document.querySelector('[data-modal-open]');
 const closeModal = document.querySelector('.modal-close');
 const copyPix = document.querySelector('.copy-pix');
 const copyFeedback = document.querySelector('.copy-feedback');
-const rsvpButton = document.querySelector('.rsvp-button');
 const countdown = document.querySelector('#countdown');
 
 const setModal = (open) => {
@@ -53,11 +52,6 @@ copyPix.addEventListener('click', async () => {
   } catch {
     copyFeedback.textContent = `Chave Pix: ${pixKey}`;
   }
-});
-
-rsvpButton.addEventListener('click', () => {
-  rsvpButton.textContent = 'Presença confirmada';
-  rsvpButton.disabled = true;
 });
 
 const weddingDate = new Date('2027-04-03T17:00:00-03:00').getTime();
